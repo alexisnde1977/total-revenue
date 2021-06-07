@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TSV Upload</title>
+    <style>
+      .footer {
+        position: fixed;
+        bottom: 0;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+      .desc_wrapper {
+        width: 350px;
+        padding: 2px;
+        margin: 2px;
+        margin-bottom: 20px;
+      }
+      .form_wrapper {
+        padding-top: 10px;
+        width: 350px;
+        border: 10px solid rgb(51, 51, 119);
+        padding: 10px;
+        margin: 20px;
+      }
+      * {
+        font-family: Arial;
+      }
+    </style>
+  </head>
+  <center>
+  <body>
+      <div class="form_wrapper">
+        <h1>Upload Form</h1>
+        <div class="desc_wrapper">
+          <p style="font-size: 14px;">
+            Upload a .tsv in the format of item, item description, price, count, vendor, and vendor address.
+          </p>
+        </div>
+        <form method="post" enctype="multipart/form-data" style="padding-bottom: 20px;">
+          <input id="tsv" type="file" name="tsv" />
+          <input type="submit" name="submit" value="Upload" />
+        </form>
+      </div>
+      {% if error %}
+      <p style="color:crimson;">
+        {{ error }}
+      </p>
+      {% endif %}
+  </body>
+    <div class="footer">
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" name="purge" value="Purge Database" />
+      </form>
+      <break></break>
+      {% if purge %}
+      <p style="color:green; font-size: 14px;">
+        The database has been purged! The total revenue is now $0.
+      </p>
+      {% endif %}
+    </dev>
+  </center>
+</html>
